@@ -1,0 +1,50 @@
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	<a href="register.xhtml">Employee Registration</a>
+	<h:messages/>
+	<h:body>
+		<h:dataTable value="#{employeeBean.employees}" var="employee">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				#{employee.employeeId}
+			</h:column>
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				#{employee.employeeEmail}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+				#{employee.employeePassword}
+			</h:column>
+			<h:column>
+				<f:facet name="header">CURP</f:facet>
+				#{employee.employeeCurp}
+			</h:column>
+			<h:column>
+				<f:facet name="header">First Name</f:facet>
+				#{employee.employeeFirstName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Middle Name</f:facet>
+				#{employee.employeeMiddleName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>
+				#{employee.employeeLastName}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Birth Date</f:facet>
+				#{employee.employeeBirthDate}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Birth Country</f:facet>
+				#{employee.employeeBirthCountry}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Gender</f:facet>
+				#{employee.employeeGender}
+			</h:column>
+		</h:dataTable>
+	</h:body>
+</html>

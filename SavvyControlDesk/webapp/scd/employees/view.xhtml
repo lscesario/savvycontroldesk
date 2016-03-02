@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"  
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<title>Savvy Transfer Control Desk - Employee Management</title>
+    </h:head>
+	<h:body>
+	<h:form>
+		<p:menubar>
+			<p:submenu label="Employees">
+				<p:menuitem value="Create an Employee" url="/scd/employees/register.xhtml"></p:menuitem>
+				<p:menuitem value="Manage an Employee" url="/scd/employees/view.xhtml"></p:menuitem>
+				<p:menuitem value="My Employee Profile" url="/scd/employees/view.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Companies">
+				<p:menuitem value="Create a Company" url="/scd/companies/register.xhtml"></p:menuitem>
+				<p:menuitem value="Manage an Company" url="/scd/companies/view.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Users">
+				<p:menuitem value="Manage an User" url="/scd/users/view.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Beneficiaries">
+				<p:menuitem value="Manage a Beneficiary" url="/scd/beneficiaries/view.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Payments">
+				<p:menuitem value="Manage a Payment" url="/scd/payments/view.xhtml"></p:menuitem>
+				<p:menuitem value="Authorize a Payment" url="/scd/payments/authorize.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Alerts">
+				<p:menuitem value="View Alerts" url="/scd/alerts/view.xhtml"></p:menuitem>
+				<p:menuitem value="Search an Alert" url="/scd/alerts/view.xhtml"></p:menuitem>
+			</p:submenu>
+			<f:facet name="options">
+	            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+	        </f:facet>
+		</p:menubar>
+	</h:form>
+	<p:messages/>
+	<h2>Employee Management</h2>
+	<h:form prependId="false">
+		<div>
+			<p:outputLabel>Employee Search: </p:outputLabel>
+		</div>
+		<div>
+			<p:outputLabel>Employee E-mail: </p:outputLabel>
+			<p:inputText value="#{employeeBean.employee.employee_email}"/>
+			<p:outputLabel>Employee ID: </p:outputLabel>
+			<p:inputText value="#{employeeBean.employee.employee_id}"/>
+			<p:outputLabel>Employee Name: </p:outputLabel>
+			<p:inputText value="#{employeeBean.employee.employee_first_name}"/>
+		</div>
+		<div>
+			<p:commandButton value="Search" action="#{employeeBean.loadSingleEmployee()}"/>
+		</div>
+	</h:form>
+	<p:separator/>
+	<div>
+		<h:form prependId="false">
+			<div>
+				<p:outputLabel>E-mail: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_email}" id="employeeEmail"/>
+			</div>
+			<div>
+				<p:outputLabel>CURP: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_curp}" id="employeeCurp"/>
+			</div>
+			<div>
+				<p:outputLabel>First Name: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_first_name}" id="employeeFirstName"/>
+			</div>
+			<div>
+				<p:outputLabel>Middle Name: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_middle_name}" id="employeeMiddleName"/>
+			</div>
+			<div>
+				<p:outputLabel>Last Name: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_last_name}" id="employeeLastName"/>
+			</div>
+			<div>
+				<p:outputLabel>Birth Date: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
+			</div>
+			<div>
+				<p:outputLabel>Birth Country: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_birth_country}" id="birthCountry"/>
+			</div>
+			<div>
+				<p:outputLabel>Gender: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_gender}"/>
+			</div>
+			<div>
+				<p:outputLabel>Status: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.actor_status_id.actor_status_description}"/>
+			</div>
+			<div>
+				<p:outputLabel>Employee Group Type: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_group_type_id.employee_group_type_id_description}"/>
+			</div>
+			<div>
+				<p:outputLabel>Last Update: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_updated_date}"/>
+			</div>
+			<div>
+				<p:outputLabel>Updated By: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_updated_by}"/>
+			</div>
+			<div>
+				<p:outputLabel>Creation Date: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_creation_date}"/>
+			</div>
+			<div>
+				<p:outputLabel>Last Update: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_password_last_update}"/>
+			</div>
+			<div>
+				<p:outputLabel>Left Date: </p:outputLabel>
+				<p:outputLabel value="#{employeeBean.employee.employee_left_date}"/>
+			</div>
+			<p:commandButton value="Update" action="#{employeeBean.save}"/>
+		</h:form>
+	</div>
+	</h:body>
+	
+	<!--  Objetivos da página:
+		- Carregar a página com o form que vai conter as informações do funcionário desativadas
+		- Receber alguma chave do funcionário: Id/Nome/E-mail/Documento
+		- Tentar autocompletar a pesquisa com os dados já carregados na pagina, mas sem mostrar os dados já carregados em lugar nenhum
+		- Ao clicar em submit, substituir os campos na parte inferior da tela por uma imagem de loading
+		- Popular os campos com os dados do usuário com o form ainda desabilitado
+		- Exibir um botão de "Update" que habilita o form para alteração e inclui um botão de "submit"
+		- Ao finalizar as alterações
+			*E-mail como e-mail
+			*Senha de acordo com política de formato de senha
+			*Senha não pode ser igual as 5 ultimas senhas utilizadas
+			*CURP como CURP
+			*Birth Date como MM/dd/yyyy
+			*Inserir campo de máscara no input de Birth Date
+		- Persistir novos dados do usuário na base de dados Employee
+		- Encaminhar para a página details do funcionário recem criado
+		-->
+</html>
+
+
+
+
