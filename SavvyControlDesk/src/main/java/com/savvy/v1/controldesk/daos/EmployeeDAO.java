@@ -16,6 +16,7 @@ public class EmployeeDAO {
 	private EntityManager em;
 	
 	public void save(Employee employee){
+		employee.setEmployee_birth_country("Brazil");
 		em.persist(employee);
 	}
 	
@@ -25,6 +26,10 @@ public class EmployeeDAO {
 
 	public Employee loadSingleEmployee(Employee e){
 		return em.find(Employee.class, e);
+	}
+		
+	public Employee getById(long parseLong) {
+		return em.find(Employee.class, parseLong);
 	}
 		
 	

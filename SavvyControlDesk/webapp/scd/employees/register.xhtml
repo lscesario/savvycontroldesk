@@ -47,7 +47,7 @@
 		</div>
 		<div>
 			<p:outputLabel>Password: </p:outputLabel>
-			<p:password value="#{employeeBean.employee.employee_email}" id="employeePassword"/>
+			<p:password value="#{employeeBean.employee.employee_password}" id="employeePassword"/>
 		</div>
 		<div>
 			<p:outputLabel>CURP: </p:outputLabel>
@@ -65,19 +65,21 @@
 			<p:outputLabel>Last Name: </p:outputLabel>
 			<p:inputText value="#{employeeBean.employee.employee_last_name}" id="employeeLastName"/>
 		</div>
-		<div>
+		<!--  <div>
 			<p:outputLabel>Birth Date: </p:outputLabel>
-			<p:calendar value="#{employeeBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
-		</div>
-		<div>
+			<p:calendar value="#{employeeBean.employee.employee_birth_date}">
+				<f:convertDateTime dateStyle="dd/MM/yyyy"/>
+			</p:calendar>
+		</div>-->
+		<!-- <div>
 			<p:outputLabel for="birthCountry">Birth Country: </p:outputLabel>
-			<p:selectOneListbox value="#{employeeBean.employee.employee_birth_country}" id="birthCountry" panelStyle="width:400px" filter="true" 
+			<p: value="#{employeeBean.employee.employee_birth_country}" id="birthCountry" panelStyle="width:400px" filter="true" 
 				 style="width:250px;" scrollHeight="100" filterMatchMode="contains">
 				<f:selectItems value="#{countryManagementBean.countryList}" var="country" 
 										itemLabel="#{country.country_name}"
 										itemValue="#{country}"/>
 			</p:selectOneListbox>
-		</div>
+		</div> -->
 		<div>
 			<p:outputLabel for="employeeGender">Gender: </p:outputLabel>
 			<p:selectOneRadio value="#{employeeBean.employee.employee_gender}" id="employeeGender">
@@ -85,9 +87,10 @@
 				<f:selectItem itemLabel="Female" itemValue="Female"/>
 			</p:selectOneRadio>
 		</div>
-		<p:commandButton value="Register" action="#{employeeBean.save}"/>
+		<p:commandButton value="Register" action="#{employeeBean.save()}"/>
 	</h:form>
 	</h:body>
+</html>
 	
 	<!--  Objetivos da página:
 		- Receber dados do funcionário - OK
@@ -101,7 +104,10 @@
 		- Persistir dados do usuário na base de dados Employee - NOK
 		- Encaminhar para a página details do funcionário recem criado - NOK
 		-->
-</html>
+
+			
+		
+		
 
 
 

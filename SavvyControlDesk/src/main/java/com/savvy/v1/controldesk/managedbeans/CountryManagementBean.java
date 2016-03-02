@@ -15,14 +15,13 @@ public class CountryManagementBean{
 
 	@Inject
 	CountryDAO clh;
-	
-	List<Country> countryList = null;
+	private List<Country>countryList;
 	
 	@PostConstruct
 	public void buildCountryList(){
 		this.countryList=clh.loadCountries();
 	}
-	
+		
 	public List<Country> getCountryList() {
 		return countryList;
 	}

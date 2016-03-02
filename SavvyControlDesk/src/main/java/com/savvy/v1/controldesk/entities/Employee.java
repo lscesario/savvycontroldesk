@@ -29,7 +29,7 @@ public class Employee {
 	private String employee_gender;
 	private Calendar employee_updated_date;
 	private String employee_updated_by;
-	private String employee_creation_date;
+	private Calendar employee_creation_date;
 	private Calendar employee_password_last_update;
 	private Calendar employee_left_date;
 	
@@ -123,10 +123,10 @@ public class Employee {
 	public void setEmployee_updated_by(String employee_updated_by) {
 		this.employee_updated_by = employee_updated_by;
 	}
-	public String getEmployee_creation_date() {
+	public Calendar getEmployee_creation_date() {
 		return employee_creation_date;
 	}
-	public void setEmployee_creation_date(String employee_creation_date) {
+	public void setEmployee_creation_date(Calendar employee_creation_date) {
 		this.employee_creation_date = employee_creation_date;
 	}
 	public Calendar getEmployee_password_last_update() {
@@ -142,4 +142,13 @@ public class Employee {
 		this.employee_left_date = employee_left_date;
 	}
 
+	
+	public String toString(){
+		return  this.employee_first_name.toString() +
+				this.employee_email.toString() +
+				this.employee_gender.toString() +
+				this.employee_last_name.toString()+
+				this.employee_curp.toString();
+		}
+	
 }
