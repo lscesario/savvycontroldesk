@@ -30,7 +30,7 @@
 			</p:submenu>
 			<p:submenu label="Alerts">
 				<p:menuitem value="View Alerts" url="/scd/alerts/view.xhtml"></p:menuitem>
-				<p:menuitem value="Search an Alert" url="/scd/alerts/view.xhtml"></p:menuitem>
+				<p:menuitem value="Search an Alert" url="/scd/alerts/view.xhtml">  </p:menuitem>
 			</p:submenu>
 			<f:facet name="options">
 	            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
@@ -45,14 +45,8 @@
 		</div>
 		<div>
 			<p:outputLabel>Employee E-mail: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_email}"/>
-			<p:outputLabel>Employee ID: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_id}"/>
-			<p:outputLabel>Employee Name: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_first_name}"/>
-		</div>
-		<div>
-			<p:commandButton value="Search" action="#{employeeBean.loadSingleEmployee()}"/>
+			<p:inputText value="#{employeeManagementBean.employee.employee_email}"/>
+			<p:commandButton value="Search" action="#{employeeManagementBean.loadSingleEmployee(employeeManagementBean.employee.employee_email)}"/>
 		</div>
 	</h:form>
 	<p:separator/>
@@ -60,65 +54,65 @@
 		<h:form prependId="false">
 			<div>
 				<p:outputLabel>E-mail: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_email}" id="employeeEmail"/>
+				<p:outputLabel value="#{employeeManagementBean.}" id="employeeEmail"/>
 			</div>
 			<div>
 				<p:outputLabel>CURP: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_curp}" id="employeeCurp"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_curp}" id="employeeCurp"/>
 			</div>
 			<div>
 				<p:outputLabel>First Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_first_name}" id="employeeFirstName"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_first_name}" id="employeeFirstName"/>
 			</div>
 			<div>
 				<p:outputLabel>Middle Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_middle_name}" id="employeeMiddleName"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_middle_name}" id="employeeMiddleName"/>
 			</div>
 			<div>
 				<p:outputLabel>Last Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_last_name}" id="employeeLastName"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_last_name}" id="employeeLastName"/>
 			</div>
 			<div>
 				<p:outputLabel>Birth Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
 			</div>
 			<div>
 				<p:outputLabel>Birth Country: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_birth_country}" id="birthCountry"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_birth_country}" id="birthCountry"/>
 			</div>
 			<div>
 				<p:outputLabel>Gender: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_gender}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_gender}"/>
 			</div>
 			<div>
 				<p:outputLabel>Status: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.actor_status_id.actor_status_description}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.actor_status_id.actor_status_description}"/>
 			</div>
 			<div>
 				<p:outputLabel>Employee Group Type: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_group_type_id.employee_group_type_id_description}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_roles}"/>
 			</div>
 			<div>
 				<p:outputLabel>Last Update: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_updated_date}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_updated_date}"/>
 			</div>
 			<div>
 				<p:outputLabel>Updated By: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_updated_by}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_updated_by}"/>
 			</div>
 			<div>
 				<p:outputLabel>Creation Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_creation_date}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_creation_date}"/>
 			</div>
 			<div>
 				<p:outputLabel>Last Update: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_password_last_update}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_password_last_update}"/>
 			</div>
 			<div>
 				<p:outputLabel>Left Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeBean.employee.employee_left_date}"/>
+				<p:outputLabel value="#{employeeManagementBean.employee.employee_left_date}"/>
 			</div>
-			<p:commandButton value="Update" action="#{employeeBean.save}"/>
+			<p:commandButton value="Update" action="#{employeeManagementBean.save}"/>
 		</h:form>
 	</div>
 	</h:body>

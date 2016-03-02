@@ -23,9 +23,17 @@ public class EmployeeDAO {
 		return em.createQuery("select a from Employee a", Employee.class).getResultList();
 	}
 
-	public Employee loadSingleEmployee(Employee e){
-		return em.find(Employee.class, e);
+	public Employee loadSingleEmployee(String email){
+		System.out.println("Chegou aqui man" + email);
+		
+		
+		return em
+				.createQuery("select c from Employee c where c.employee_email=:employee_email", Employee.class)
+				.setParameter("employee_email",email).getSingleResult();
 	}
 		
-	
+	public Employee getById(long parseLong) {
+		return em.find(Employee.class, parseLong);
+	}
+		
 }

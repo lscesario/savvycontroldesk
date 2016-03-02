@@ -9,85 +9,114 @@
     </h:head>
 	<h:body>
 		<h:form>
-		<p:menubar>
-			<p:submenu label="Employees">
-				<p:menuitem value="Create an Employee" url="/scd/employees/register.xhtml"></p:menuitem>
-				<p:menuitem value="Manage an Employee" url="/scd/employees/view.xhtml"></p:menuitem>
-				<p:menuitem value="My Employee Profile" url="/scd/employees/view.xhtml"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Companies">
-				<p:menuitem value="Create a Company" url="/scd/companies/register.xhtml"></p:menuitem>
-				<p:menuitem value="Manage an Company" url="/scd/companies/view.xhtml"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Users">
-				<p:menuitem value="Manage an User" url="/scd/users/view.xhtml"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Beneficiaries">
-				<p:menuitem value="Manage a Beneficiary" url="/scd/beneficiaries/view.xhtml"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Payments">
-				<p:menuitem value="Manage a Payment" url="/scd/payments/view.xhtml"></p:menuitem>
-				<p:menuitem value="Authorize a Payment" url="/scd/payments/authorize.xhtml"></p:menuitem>
-			</p:submenu>
-			<p:submenu label="Alerts">
-				<p:menuitem value="View Alerts" url="/scd/alerts/list.xhtml"></p:menuitem>
-				<p:menuitem value="Search an Alert" url="/scd/alerts/view.xhtml"></p:menuitem>
-			</p:submenu>
-			<f:facet name="options">
-	            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-	        </f:facet>
-		</p:menubar>
+		<header>
+			<p:menubar>
+				<p:submenu label="Employees">
+					<p:menuitem value="Create an Employee" url="/scd/employees/register.xhtml"></p:menuitem>
+					<p:menuitem value="Manage an Employee" url="/scd/employees/view.xhtml"></p:menuitem>
+					<p:menuitem value="My Employee Profile" url="/scd/employees/view.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Companies">
+					<p:menuitem value="Create a Company" url="/scd/companies/register.xhtml"></p:menuitem>
+					<p:menuitem value="Manage an Company" url="/scd/companies/view.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Users">
+					<p:menuitem value="Manage an User" url="/scd/users/view.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Beneficiaries">
+					<p:menuitem value="Manage a Beneficiary" url="/scd/beneficiaries/view.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Payments">
+					<p:menuitem value="Manage a Payment" url="/scd/payments/view.xhtml"></p:menuitem>
+					<p:menuitem value="Authorize a Payment" url="/scd/payments/authorize.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Alerts">
+					<p:menuitem value="View Alerts" url="/scd/alerts/list.xhtml"></p:menuitem>
+					<p:menuitem value="Search an Alert" url="/scd/alerts/view.xhtml"></p:menuitem>
+				</p:submenu>
+				<f:facet name="options">
+		            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+		        </f:facet>
+			</p:menubar>
+		</header>
 	</h:form>
 	<p:messages/>
 	<h2>Employee Registration</h2>
-	<h:form prependId="false">
-		<div>
-			<p:outputLabel>E-mail: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_email}" id="employeeEmail"/>
-		</div>
-		<div>
-			<p:outputLabel>Password: </p:outputLabel>
-			<p:password value="#{employeeBean.employee.employee_email}" id="employeePassword"/>
-		</div>
-		<div>
-			<p:outputLabel>CURP: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_curp}" id="employeeCurp"/>
-		</div>
-		<div>
-			<p:outputLabel>First Name: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_first_name}" id="employeeFirstName"/>
-		</div>
-		<div>
-			<p:outputLabel>Middle Name: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_middle_name}" id="employeeMiddleName"/>
-		</div>
-		<div>
-			<p:outputLabel>Last Name: </p:outputLabel>
-			<p:inputText value="#{employeeBean.employee.employee_last_name}" id="employeeLastName"/>
-		</div>
-		<div>
-			<p:outputLabel>Birth Date: </p:outputLabel>
-			<p:calendar value="#{employeeBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
-		</div>
-		<div>
-			<p:outputLabel for="birthCountry">Birth Country: </p:outputLabel>
-			<p:selectOneListbox value="#{employeeBean.employee.employee_birth_country}" id="birthCountry" panelStyle="width:400px" filter="true" 
-				 style="width:250px;" scrollHeight="100" filterMatchMode="contains">
-				<f:selectItems value="#{countryManagementBean.countryList}" var="country" 
-										itemLabel="#{country.country_name}"
-										itemValue="#{country}"/>
-			</p:selectOneListbox>
-		</div>
-		<div>
-			<p:outputLabel for="employeeGender">Gender: </p:outputLabel>
-			<p:selectOneRadio value="#{employeeBean.employee.employee_gender}" id="employeeGender">
-				<f:selectItem itemLabel="Male" itemValue="Male"/>
-				<f:selectItem itemLabel="Female" itemValue="Female"/>
-			</p:selectOneRadio>
-		</div>
-		<p:commandButton value="Register" action="#{employeeBean.save}"/>
-	</h:form>
+	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		<h:form prependId="false">
+			<div>
+				<p:outputLabel>E-mail: </p:outputLabel>
+				<p:inputText value="#{employeeManagementBean.employee.employee_email}" id="employeeEmail"/>
+			</div>
+			
+			<div>
+				<p:outputLabel>Password: </p:outputLabel>
+				<p:password value="#{employeeManagementBean.employee.employee_password}" id="employeePassword"/>
+			</div>
+			<div>
+				<p:outputLabel>CURP: </p:outputLabel>
+				<p:inputText value="#{employeeManagementBean.employee.employee_curp}" id="employeeCurp"/>
+			</div>
+			
+			<div>
+				<p:outputLabel>First Name: </p:outputLabel>
+				<p:inputText value="#{employeeManagementBean.employee.employee_first_name}" id="employeeFirstName"/>
+			</div>
+			
+			<div>
+				<p:outputLabel>Middle Name: </p:outputLabel>
+				<p:inputText value="#{employeeManagementBean.employee.employee_middle_name}" id="employeeMiddleName"/>
+			</div>
+			<div>
+				<p:outputLabel>Last Name: </p:outputLabel>
+				<p:inputText value="#{employeeManagementBean.employee.employee_last_name}" id="employeeLastName"/>
+			</div>
+			
+			<div>
+				<p:outputLabel>Birth Date: </p:outputLabel>
+				<!--  <h:inputText value="#{employeeManagementBean.employee.employee_birth_date}" pt:type="date"/>-->
+				<p:calendar value="#{employeeManagementBean.employee.employee_birth_date}" pattern="dd/MM/yyyy" mask="true" pt:type="date"/>
+			</div>
+			
+			<div>
+				<p:outputLabel for="birthCountry">Birth Country: </p:outputLabel>
+				<p:selectOneMenu value="#{employeeManagementBean.employee.employee_birth_country}" 
+										id="birthCountry" 
+										filter="true" 
+										filterMatchMode="contains"
+										>
+					<f:selectItems value="#{employeeManagementBean.countries}" 
+											var="country" 
+											itemLabel="#{country.country_name}"
+											itemValue="#{country.country_name}"/>
+				</p:selectOneMenu>
+			</div>
+			
+			<div>
+				<p:outputLabel for="birthCountry">Employee Roles: </p:outputLabel>
+				<p:selectManyMenu value="#{employeeManagementBean.employee.employee_roles}" 
+										id="employeeRoles"
+										converter="entityConverter">
+					<f:selectItems value="#{employeeManagementBean.employeeroles}" 
+											var="employeeroles" 
+											itemLabel="#{employeeroles.employee_role_name}"
+											itemValue="#{employeeroles}"/>
+				</p:selectManyMenu>
+			</div>
+			
+			<div>
+				<p:outputLabel for="employeeGender">Gender: </p:outputLabel>
+				<p:selectOneRadio value="#{employeeManagementBean.employee.employee_gender}" id="employeeGender">
+					<f:selectItem itemLabel="Male" itemValue="Male"/>
+					<f:selectItem itemLabel="Female" itemValue="Female"/>
+				</p:selectOneRadio>
+			</div>
+			
+			<p:commandButton value="Register" action="#{employeeManagementBean.save}"/>
+		</h:form>
+	</h:panelGrid>
 	</h:body>
+</html>
 	
 	<!--  Objetivos da página:
 		- Receber dados do funcionário - OK
@@ -101,7 +130,10 @@
 		- Persistir dados do usuário na base de dados Employee - NOK
 		- Encaminhar para a página details do funcionário recem criado - NOK
 		-->
-</html>
+
+			
+		
+		
 
 
 

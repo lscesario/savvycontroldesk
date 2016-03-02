@@ -1,11 +1,18 @@
 package com.savvy.v1.controldesk.entities;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Employee {
@@ -13,24 +20,29 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer employee_id;
-	@ManyToOne
-	private EmployeeGroupType employee_group_type_id;
+	@ManyToMany
+	private List <EmployeeRoles> employee_roles;
 	private String employee_email;
 	private String employee_password;
 	private String employee_historical_password;
 	private String employee_curp;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private ActorStatus actor_status_id; 
 	private String employee_first_name;
 	private String employee_middle_name;
 	private String employee_last_name;
-	private Calendar employee_birth_date;
+	@Temporal(TemporalType.DATE)
+	private Date employee_birth_date;
 	private String employee_birth_country;
 	private String employee_gender;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_updated_date;
 	private String employee_updated_by;
-	private String employee_creation_date;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar employee_creation_date;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_password_last_update;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_left_date;
 	
 	public Integer getEmployee_id() {
@@ -39,11 +51,12 @@ public class Employee {
 	public void setEmployee_id(Integer employee_id) {
 		this.employee_id = employee_id;
 	}
-	public EmployeeGroupType getEmployee_group_type_id() {
-		return employee_group_type_id;
+	
+	public List<EmployeeRoles> getEmployee_roles() {
+		return employee_roles;
 	}
-	public void setEmployee_group_type_id(EmployeeGroupType employee_group_type_id) {
-		this.employee_group_type_id = employee_group_type_id;
+	public void setEmployee_roles(List<EmployeeRoles> employee_roles) {
+		this.employee_roles = employee_roles;
 	}
 	public String getEmployee_email() {
 		return employee_email;
@@ -93,10 +106,10 @@ public class Employee {
 	public void setEmployee_last_name(String employee_last_name) {
 		this.employee_last_name = employee_last_name;
 	}
-	public Calendar getEmployee_birth_date() {
+	public Date getEmployee_birth_date() {
 		return employee_birth_date;
 	}
-	public void setEmployee_birth_date(Calendar employee_birth_date) {
+	public void setEmployee_birth_date(Date employee_birth_date) {
 		this.employee_birth_date = employee_birth_date;
 	}
 	public String getEmployee_birth_country() {
@@ -114,8 +127,8 @@ public class Employee {
 	public Calendar getEmployee_updated_date() {
 		return employee_updated_date;
 	}
-	public void setEmployee_updated_date(Calendar employee_updated_date) {
-		this.employee_updated_date = employee_updated_date;
+	public void setEmployee_updated_date(Calendar date) {
+		this.employee_updated_date = date;
 	}
 	public String getEmployee_updated_by() {
 		return employee_updated_by;
@@ -123,10 +136,10 @@ public class Employee {
 	public void setEmployee_updated_by(String employee_updated_by) {
 		this.employee_updated_by = employee_updated_by;
 	}
-	public String getEmployee_creation_date() {
+	public Calendar getEmployee_creation_date() {
 		return employee_creation_date;
 	}
-	public void setEmployee_creation_date(String employee_creation_date) {
+	public void setEmployee_creation_date(Calendar employee_creation_date) {
 		this.employee_creation_date = employee_creation_date;
 	}
 	public Calendar getEmployee_password_last_update() {
@@ -142,4 +155,14 @@ public class Employee {
 		this.employee_left_date = employee_left_date;
 	}
 
+	
+	
+	public String toString(){
+		return  this.employee_first_name.toString() +
+				this.employee_email.toString() +
+				this.employee_gender.toString() +
+				this.employee_last_name.toString()+
+				this.employee_curp.toString();
+		}
+	
 }
