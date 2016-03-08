@@ -40,7 +40,6 @@ public class Employee {
 	private String employee_updated_by;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_creation_date;
-	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_password_last_update;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_left_date;
@@ -155,8 +154,7 @@ public class Employee {
 		this.employee_left_date = employee_left_date;
 	}
 
-	
-	
+
 	public String toString(){
 		return  this.employee_first_name.toString() +
 				this.employee_email.toString() +
