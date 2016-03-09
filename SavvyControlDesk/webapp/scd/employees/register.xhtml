@@ -94,14 +94,14 @@
 			
 			<div>
 				<p:outputLabel for="birthCountry">Employee Roles: </p:outputLabel>
-				<p:selectManyMenu value="#{employeeManagementBean.employee.employee_roles}" 
-										id="employeeRoles"
+				<p:selectOneMenu value="#{employeeManagementBean.employee.employee_job}" 
+										id="employeeJob"
 										converter="entityConverter">
-					<f:selectItems value="#{employeeManagementBean.employeeroles}" 
-											var="employeeroles" 
-											itemLabel="#{employeeroles.employee_role_name}"
-											itemValue="#{employeeroles}"/>
-				</p:selectManyMenu>
+					<f:selectItems value="#{employeeManagementBean.jobs}" 
+											var="job" 
+											itemLabel="#{job.job_description}"
+											itemValue="#{job}"/>
+				</p:selectOneMenu>
 			</div>
 			
 			<div>

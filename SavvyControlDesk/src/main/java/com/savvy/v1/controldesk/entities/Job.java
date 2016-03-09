@@ -18,7 +18,7 @@ public class Job implements Serializable {
 	private Integer job_id;
 	private String job_description;
 	@ManyToMany
-	private List<Role> employee_roles;
+	private List<Role> roles;
 	
 	
 	public Integer getJob_id() {
@@ -33,11 +33,12 @@ public class Job implements Serializable {
 	public void setJob_description(String job_description) {
 		this.job_description = job_description;
 	}
-	public List<Role> getEmployee_roles() {
-		return employee_roles;
+
+	public List<Role> getRoles() {
+		return roles;
 	}
-	public void setEmployee_roles(List<Role> employee_roles) {
-		this.employee_roles = employee_roles;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

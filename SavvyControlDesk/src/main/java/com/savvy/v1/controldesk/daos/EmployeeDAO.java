@@ -19,7 +19,6 @@ public class EmployeeDAO {
 	private EntityManager em;
 	
 	public void save(Employee employee){
-		employee.setEmployee_birth_country("Brazil");
 		em.persist(employee);
 	}
 	
