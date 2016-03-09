@@ -3,8 +3,10 @@ package com.savvy.v1.controldesk.managedbeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import com.savvy.v1.controldesk.daos.CountryDAO;
@@ -12,15 +14,18 @@ import com.savvy.v1.controldesk.daos.EmployeeDAO;
 import com.savvy.v1.controldesk.daos.EmployeeRolesDAO;
 import com.savvy.v1.controldesk.entities.Country;
 import com.savvy.v1.controldesk.entities.Employee;
-import com.savvy.v1.controldesk.entities.EmployeeRoles;
+import com.savvy.v1.controldesk.entities.Role;
 import com.savvy.v1.controldesk.helpers.EmployeeManager;
+import java.io.Serializable;
+
 
 @Model
-public class EmployeeManagementBean {
+public class EmployeeManagementBean{
 	
 	
 	private Employee employee = new Employee();
 	private Country country = new Country();
+	private Integer employee_id;
 	
 	@Inject
 	private EmployeeManager empMan;
@@ -31,7 +36,7 @@ public class EmployeeManagementBean {
 	@Inject
 	private EmployeeRolesDAO employeeRolesDAO;
 	
-	private List<EmployeeRoles> employeeRoles;
+	private List<Role> employeeRoles;
 	private List<Country> countries;
 	private List<Employee> employees;
 	
@@ -39,19 +44,24 @@ public class EmployeeManagementBean {
 	public String save(){
 		empMan.initializeEmployeeDates(employee);
 		empMan.updateEmployeeStatus(employee,1);
+		empMan.setLastUpdateSlave(employee);
 		employeeDAO.save(employee);
-		
-		return "/scd/employees/list?faces-redirect=true";
+		return "/scd/employees/register?faces-redirect=true";
 	}
 	
-	public Employee loadSingleEmployee(String email){
-		return employeeDAO.loadSingleEmployee(email);	
+	public void loadSingleEmployeeByEmail(String email){
+		this.employee = employeeDAO.loadSingleEmployeeByEmail(email);	
+	}
+	
+	public void loadSingleEmployeeById(){
+		this.employee = employeeDAO.getById(employee_id);	
 	}
 	
 	@PostConstruct
 	public void load(){
 		this.employeeRoles = employeeRolesDAO.loadEmployeeRoles();
 		this.countries = countryDAO.loadCountries();
+		this.employees = employeeDAO.loadEmployees();
 	}
 
 	//G'n'S
@@ -63,11 +73,15 @@ public class EmployeeManagementBean {
 		return employee;
 	}
 	
-	public List<EmployeeRoles> getEmployeeroles() {
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public List<Role> getEmployeeroles() {
 		return employeeRoles;
 	}
 
-	public void setEmployeeroles(List<EmployeeRoles> employeeroles) {
+	public void setEmployeeroles(List<Role> employeeroles) {
 		this.employeeRoles = employeeroles;
 	}
 
@@ -78,6 +92,17 @@ public class EmployeeManagementBean {
 	public List<Country> getCountries() {
 		return countries;
 	}
+
+	public Integer getEmployee_id() {
+		return employee_id;
+	}
+
+	public void setEmployee_id(Integer employee_id) {
+		this.employee_id = employee_id;
+	}
+	
+	
+	
 	
 }
 

@@ -9,8 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,14 +22,14 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer employee_id;
-	@ManyToMany
-	private List <EmployeeRoles> employee_roles;
+	@ManyToOne (fetch = FetchType.EAGER)
+	private Job employee_job;
 	private String employee_email;
 	private String employee_password;
 	private String employee_historical_password;
 	private String employee_curp;
 	@ManyToOne(fetch = FetchType.EAGER)
-	private ActorStatus actor_status_id; 
+	private ActorStatus actor_status_id;
 	private String employee_first_name;
 	private String employee_middle_name;
 	private String employee_last_name;
@@ -44,6 +46,7 @@ public class Employee {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar employee_left_date;
 	
+	
 	public Integer getEmployee_id() {
 		return employee_id;
 	}
@@ -51,11 +54,11 @@ public class Employee {
 		this.employee_id = employee_id;
 	}
 	
-	public List<EmployeeRoles> getEmployee_roles() {
-		return employee_roles;
+	public Job getEmployee_job() {
+		return employee_job;
 	}
-	public void setEmployee_roles(List<EmployeeRoles> employee_roles) {
-		this.employee_roles = employee_roles;
+	public void setEmployee_job(Job employee_job) {
+		this.employee_job = employee_job;
 	}
 	public String getEmployee_email() {
 		return employee_email;

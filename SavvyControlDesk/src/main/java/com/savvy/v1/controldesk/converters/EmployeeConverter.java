@@ -17,7 +17,7 @@ public class EmployeeConverter implements Converter {
 	
 	 @Override
 	    public Object getAsObject(FacesContext context, UIComponent component, String value) {
-	        Employee e = employeeDao.getById(Long.parseLong(value));
+	        Employee e = employeeDao.getById((int) Long.parseLong(value));
 	        return e;
 	    }
 

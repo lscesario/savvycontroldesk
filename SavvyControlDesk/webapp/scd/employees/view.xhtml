@@ -40,81 +40,31 @@
 	<p:messages/>
 	<h2>Employee Management</h2>
 	<h:form prependId="false">
+		<p:messages id="messages"/>
 		<div>
-			<p:outputLabel>Employee Search: </p:outputLabel>
-		</div>
-		<div>
-			<p:outputLabel>Employee E-mail: </p:outputLabel>
-			<p:inputText value="#{employeeManagementBean.employee.employee_email}"/>
-			<p:commandButton value="Search" action="#{employeeManagementBean.loadSingleEmployee(employeeManagementBean.employee.employee_email)}"/>
+			<p:outputLabel>Employee List: </p:outputLabel>
 		</div>
 	</h:form>
 	<p:separator/>
 	<div>
-		<h:form prependId="false">
-			<div>
-				<p:outputLabel>E-mail: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.}" id="employeeEmail"/>
-			</div>
-			<div>
-				<p:outputLabel>CURP: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_curp}" id="employeeCurp"/>
-			</div>
-			<div>
-				<p:outputLabel>First Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_first_name}" id="employeeFirstName"/>
-			</div>
-			<div>
-				<p:outputLabel>Middle Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_middle_name}" id="employeeMiddleName"/>
-			</div>
-			<div>
-				<p:outputLabel>Last Name: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_last_name}" id="employeeLastName"/>
-			</div>
-			<div>
-				<p:outputLabel>Birth Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_birth_date}" pattern="MM/dd/yyyy"/>
-			</div>
-			<div>
-				<p:outputLabel>Birth Country: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_birth_country}" id="birthCountry"/>
-			</div>
-			<div>
-				<p:outputLabel>Gender: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_gender}"/>
-			</div>
-			<div>
-				<p:outputLabel>Status: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.actor_status_id.actor_status_description}"/>
-			</div>
-			<div>
-				<p:outputLabel>Employee Group Type: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_roles}"/>
-			</div>
-			<div>
-				<p:outputLabel>Last Update: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_updated_date}"/>
-			</div>
-			<div>
-				<p:outputLabel>Updated By: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_updated_by}"/>
-			</div>
-			<div>
-				<p:outputLabel>Creation Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_creation_date}"/>
-			</div>
-			<div>
-				<p:outputLabel>Last Update: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_password_last_update}"/>
-			</div>
-			<div>
-				<p:outputLabel>Left Date: </p:outputLabel>
-				<p:outputLabel value="#{employeeManagementBean.employee.employee_left_date}"/>
-			</div>
-			<p:commandButton value="Update" action="#{employeeManagementBean.save}"/>
-		</h:form>
+		<p:dataTable var="employee" value="#{employeeManagementBean.employees}">
+			<p:column headerText="Employee E-mail">
+				<a href="#{request.contextPath}/scd/employees/edit/employee.xhtml?employee_id=#{employee.employee_id}">#{employee.employee_email}</a>
+			</p:column>	
+			<p:column headerText="Employee Name">
+				#{employee.employee_first_name}
+				#{employee.employee_middle_name}
+				#{employee.employee_last_name}
+			</p:column>
+			<p:column headerText="Employee CURP">
+				#{employee.employee_curp}
+			</p:column>
+			<p:column headerText="Employee Roles">
+				#{employee.employee_roles}
+			</p:column>		
+		</p:dataTable>
 	</div>
+
 	</h:body>
 	
 	<!--  Objetivos da página:
@@ -123,7 +73,7 @@
 		- Tentar autocompletar a pesquisa com os dados já carregados na pagina, mas sem mostrar os dados já carregados em lugar nenhum
 		- Ao clicar em submit, substituir os campos na parte inferior da tela por uma imagem de loading
 		- Popular os campos com os dados do usuário com o form ainda desabilitado
-		- Exibir um botão de "Update" que habilita o form para alteração e inclui um botão de "submit"
+		- Exibir um botão de "Update" encaminha para a página de detalhes do usuário
 		- Ao finalizar as alterações
 			*E-mail como e-mail
 			*Senha de acordo com política de formato de senha
@@ -133,6 +83,12 @@
 			*Inserir campo de máscara no input de Birth Date
 		- Persistir novos dados do usuário na base de dados Employee
 		- Encaminhar para a página details do funcionário recem criado
+		
+		
+		BUGS:
+		
+		- Hibernate não está conseguindo puxa o ActorStatusID (Erro Unable 
+		
 		-->
 </html>
 

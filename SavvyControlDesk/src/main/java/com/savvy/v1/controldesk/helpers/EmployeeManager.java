@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import com.savvy.v1.controldesk.entities.ActorStatus;
 import com.savvy.v1.controldesk.entities.Country;
 import com.savvy.v1.controldesk.entities.Employee;
-import com.savvy.v1.controldesk.entities.EmployeeRoles;
+import com.savvy.v1.controldesk.entities.Role;
 
 public class EmployeeManager {
 	
@@ -34,6 +34,12 @@ public class EmployeeManager {
 	public Employee updateEmployeeStatus(Employee employee, Integer status) {
 		actorstatus.setActor_status_id(status);
 		employee.setActor_status_id(actorstatus);		
+		return employee;
+	}
+
+
+	public Employee setLastUpdateSlave(Employee employee) {
+		employee.setEmployee_updated_by("SavvySlave");
 		return employee;
 	}
 
